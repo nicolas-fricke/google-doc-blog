@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'yaml'
+require_relative '../app/config'
 require_relative '../app/server'
 
 describe 'The web server' do
@@ -10,11 +11,10 @@ describe 'The web server' do
   end
 
   let(:blog_title) { 'My Blog' }
-  let(:config) { { title: blog_title } }
+  let(:config) { { blog_title: blog_title } }
 
   before do
-    allow(YAML).to receive(:load_file).and_return(config)
-    require_relative '../app/app'
+    Config.instance_variable_set(:@config, config)
   end
 
   it 'should return the configured blog title' do

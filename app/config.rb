@@ -10,7 +10,8 @@ class Config
         begin
           YAML.load_file(path)
         rescue Errno::ENOENT
-          {}
+          raise IOError,
+                'No config file found. Define it by running `bin/setup.rb`'
         end
     end
 

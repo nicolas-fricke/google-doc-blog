@@ -3,7 +3,6 @@ require 'yaml'
 require_relative '../app/config'
 
 describe Config do
-
   describe '.[]' do
     subject { described_class[key] }
 
