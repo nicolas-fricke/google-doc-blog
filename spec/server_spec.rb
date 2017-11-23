@@ -11,6 +11,6 @@ describe 'The web server' do
   it 'should say hello' do
     get '/'
     expect(last_response).to be_successful
-    expect(last_response.body).to eq('Hello World')
+    expect(last_response.body.strip).to eq('Hello World')
   end
 end
