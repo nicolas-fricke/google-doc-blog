@@ -18,4 +18,11 @@ class GoogleDriveConnector
       .sort_by(&:modified_time)
       .reverse
   end
+
+  def doc(document_id)
+    document = session.file_by_id(document_id)
+    document if document.parents.include?(Config[:folder_id])
+  rescue Google::Apis::ClientError
+    nil
+  end
 end

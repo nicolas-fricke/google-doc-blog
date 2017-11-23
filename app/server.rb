@@ -10,3 +10,13 @@ get '/' do
         docs: GoogleDriveConnector.new.docs,
       }
 end
+
+get '/:document_id' do
+  doc = GoogleDriveConnector.new.doc(params[:document_id])
+  halt 404 unless doc
+  erb :show,
+      locals: {
+        blog_title: Config[:blog_title],
+        doc: doc,
+      }
+end

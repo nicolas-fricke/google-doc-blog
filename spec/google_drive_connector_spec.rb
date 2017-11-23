@@ -49,4 +49,43 @@ describe GoogleDriveConnector do
     it { should contain_exactly older_document_double, newer_document_double }
     it { should eq [newer_document_double, older_document_double] }
   end
+
+  describe '#doc' do
+    let(:doc_id) { 'd0c-1d' }
+    subject { described_class.new.doc(doc_id) }
+
+    context 'when the `doc_id` exists' do
+      let(:folder_id) { '123abc' }
+      let(:document_double) { double('document', parents: document_parents) }
+
+      before do
+        allow(Config).to receive(:[]).with(:folder_id).and_return(folder_id)
+        allow(session_double).to(
+          receive(:file_by_id).with(doc_id).and_return(document_double)
+        )
+      end
+
+      context 'and it is in the right folder' do
+        let(:document_parents) { [folder_id] }
+        it { should eq document_double }
+      end
+
+      context 'but it is not in the right folder' do
+        let(:document_parents) { ['qwe987'] }
+        it { should eq nil }
+      end
+    end
+
+    context 'when the `doc_id` does not exist' do
+      before do
+        allow(session_double).to(
+          receive(:file_by_id)
+            .with(doc_id)
+            .and_raise(Google::Apis::ClientError, 'File not found')
+        )
+      end
+
+      it { should eq nil }
+    end
+  end
 end
