@@ -10,8 +10,9 @@ Simple web-app using [`article_json`](https://github.com/Devex/article_json) to 
 ## Usage
 
 1. Run `bundle install` to install all required dependencies
-2. Execute `bundle exec ruby app/server` to start the server
-3. You should be able to open the webapp via `http://localhost:4567` in your browser 
+1. Run `bundle exec ruby bin/setup.rb` and follow the instructions to set up your environment
+1. Execute `bundle exec ruby app/server` to start the server
+1. You should be able to open the webapp via `http://localhost:4567` in your browser 
 
 ## Running the tests
 
