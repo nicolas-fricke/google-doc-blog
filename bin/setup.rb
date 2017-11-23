@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require_relative '../app/config'
 require_relative '../app/google_drive_connector'
 
 puts 'This script will guide you through the required setup steps setup the '\
@@ -29,7 +30,4 @@ while folder.nil?
   end
 end
 
-current_dir = File.dirname(__FILE__)
-File.open(File.join([current_dir, '..', 'config', 'config.yml']), 'w+') do |f|
-  f.write YAML.dump(settings)
-end
+File.open(Config.path, 'w+') { |f| f.write YAML.dump(settings) }
