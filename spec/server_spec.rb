@@ -64,11 +64,41 @@ describe 'The web server' do
                title: 'My first document',
                last_modifying_user: user_double
       end
+      let(:html) do
+        <<~HTML
+          <html>
+          <head>
+            <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+            <style type="text/css"></style>
+          </head>
+          <body style="background-color:#ffffff;padding:72pt 72pt 72pt 72pt;max-width:468pt">
+          <h1 id="h.rdp4m3ei7nk6" style="padding-top:20pt;margin:0;color:#000000;padding-left:0;font-size:20pt;padding-bottom:6pt;line-height:1.15;page-break-after:avoid;font-family:&quot;Arial&quot;;orphans:2;widows:2;text-align:left;padding-right:0">
+            <span style="color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:&quot;Arial&quot;;font-style:normal">Simple article</span>
+          </h1>
+          <p style="padding:0;margin:0;color:#000000;font-size:11pt;font-family:&quot;Arial&quot;;line-height:1.15;orphans:2;widows:2;height:11pt;text-align:left">
+            <span style="color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:&quot;Arial&quot;;font-style:normal"></span>
+          </p>
+          <p style="padding:0;margin:0;color:#000000;font-size:11pt;font-family:&quot;Arial&quot;;line-height:1.15;orphans:2;widows:2;text-align:left">
+            <span style="color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:&quot;Arial&quot;;font-style:normal">It's nice when it works!</span>
+          </p>
+          <p style="padding:0;margin:0;color:#000000;font-size:11pt;font-family:&quot;Arial&quot;;line-height:1.15;orphans:2;widows:2;height:11pt;text-align:left">
+            <span style="color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:&quot;Arial&quot;;font-style:normal"></span>
+          </p>
+          </body>
+          </html>
+        HTML
+      end
+
+      before do
+        allow(document_double)
+          .to receive(:export_as_string).with('html').and_return(html)
+      end
 
       it 'should return the article page for the given document' do
         get "/#{doc_id}"
         expect(last_response).to be_successful
         expect(last_response.body).to include document_double.title
+        expect(last_response.body).to include "It's nice when it works!"
       end
     end
 

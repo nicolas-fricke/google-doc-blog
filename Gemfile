@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'article_json'
 gem 'google_drive'
 gem 'sinatra'
 

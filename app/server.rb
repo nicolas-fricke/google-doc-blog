@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'yaml'
+require 'article_json'
 require_relative 'config'
 require_relative 'google_drive_connector'
 

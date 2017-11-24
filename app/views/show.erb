@@ -5,5 +5,5 @@
   <time><%= doc.modified_time.strftime('%d %b %Y') %></time>
 </div>
 <article>
-  Lorem ipsum, sit dolor amet.
+  <%= ArticleJSON::Article.from_google_doc_html(doc.export_as_string('html')).to_html %>
 </article>
