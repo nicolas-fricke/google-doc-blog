@@ -3,7 +3,7 @@
   <% docs.each do |doc| %>
     <li>
       <a href="/<%= doc.id %>">
-        <%= doc.title %> (<%= doc.modified_time.strftime('%d %b %Y') %>)
+        <%= doc.title %> (<%= doc.modified_time_display %>)
       </a>
     </li>
   <% end %>

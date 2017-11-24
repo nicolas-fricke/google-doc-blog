@@ -20,11 +20,13 @@ describe GoogleDriveConnector do
 
     let(:older_document_double) do
       double 'older_document',
+             title: 'Older Document',
              resource_type: 'document',
              modified_time: DateTime.now - 3 # 3 days ago
     end
     let(:newer_document_double) do
       double 'newer_document',
+             title: 'Newer Document',
              resource_type: 'document',
              modified_time: DateTime.now - 1 # 1 day ago
     end
@@ -45,9 +47,15 @@ describe GoogleDriveConnector do
       allow(folder_double).to receive(:files).and_return(file_doubles)
     end
 
-    it { should be_an Array }
-    it { should contain_exactly older_document_double, newer_document_double }
-    it { should eq [newer_document_double, older_document_double] }
+    it 'should return the right documents' do
+      is_expected.to be_an Array
+      is_expected.to all be_a Document
+      titles = subject.map(&:title)
+      expect(titles).to contain_exactly older_document_double.title,
+                                        newer_document_double.title
+      expect(titles).to eq [newer_document_double.title,
+                            older_document_double.title]
+    end
   end
 
   describe '#doc' do
@@ -56,7 +64,9 @@ describe GoogleDriveConnector do
 
     context 'when the `doc_id` exists' do
       let(:folder_id) { '123abc' }
-      let(:document_double) { double('document', parents: document_parents) }
+      let(:document_double) do
+        double('document', id: doc_id, parents: document_parents)
+      end
 
       before do
         allow(Config).to receive(:[]).with(:folder_id).and_return(folder_id)
@@ -67,7 +77,10 @@ describe GoogleDriveConnector do
 
       context 'and it is in the right folder' do
         let(:document_parents) { [folder_id] }
-        it { should eq document_double }
+        it 'should return the wrapped document' do
+          is_expected.to be_a Document
+          expect(subject.id).to eq doc_id
+        end
       end
 
       context 'but it is not in the right folder' do

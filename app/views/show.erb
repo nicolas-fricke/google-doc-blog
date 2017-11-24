@@ -1,9 +1,9 @@
 <h1><%= doc.title %></h1>
 <div class="meta-info">
-  <cite><%= doc.last_modifying_user.display_name %></cite>
+  <cite><%= doc.last_author_name %></cite>
   //
-  <time><%= doc.modified_time.strftime('%d %b %Y') %></time>
+  <time><%= doc.modified_time_display %></time>
 </div>
 <article>
-  <%= ArticleJSON::Article.from_google_doc_html(doc.export_as_string('html')).to_html %>
+  <%= doc.html_body %>
 </article>

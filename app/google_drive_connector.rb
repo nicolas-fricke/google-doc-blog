@@ -1,5 +1,6 @@
 require 'google_drive'
 require_relative 'config'
+require_relative 'document'
 
 class GoogleDriveConnector
   attr_reader :session
@@ -15,13 +16,14 @@ class GoogleDriveConnector
       .file_by_id(Config[:folder_id])
       .files
       .select { |file| file.resource_type == 'document' }
+      .map { |doc| Document.new(doc) }
       .sort_by(&:modified_time)
       .reverse
   end
 
   def doc(document_id)
     document = session.file_by_id(document_id)
-    document if document.parents.include?(Config[:folder_id])
+    Document.new(document) if document.parents.include?(Config[:folder_id])
   rescue Google::Apis::ClientError
     nil
   end
