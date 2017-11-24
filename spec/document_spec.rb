@@ -49,4 +49,18 @@ describe Document do
     it { should be_a String }
     it { should include "It's nice when it works!" }
   end
+
+  describe '#amp_body' do
+    subject { instance.amp_body }
+    it { should be_a String }
+    it { should include "It's nice when it works!" }
+  end
+
+  describe '#amp_libraries' do
+    subject { instance.amp_libraries }
+    it { should be_an Array }
+    it { should all be_a String }
+    it { should all start_with '<script' }
+    it { should all end_with '</script>' }
+  end
 end

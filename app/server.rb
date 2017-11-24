@@ -15,9 +15,20 @@ end
 get '/:document_id' do
   doc = GoogleDriveConnector.new.doc(params[:document_id])
   halt 404 unless doc
-  erb :show,
+  erb :'show.html',
       locals: {
         blog_title: Config[:blog_title],
         doc: doc,
+      }
+end
+
+get '/:document_id/amp' do
+  doc = GoogleDriveConnector.new.doc(params[:document_id])
+  halt 404 unless doc
+  erb :'show.amp',
+      locals: {
+        blog_title: Config[:blog_title],
+        doc: doc,
+        header_tags: doc.amp_libraries.join(''),
       }
 end

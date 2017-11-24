@@ -1,3 +1,5 @@
+require 'article_json'
+
 class Document
   def initialize(google_document)
     @google_document = google_document
@@ -27,11 +29,22 @@ class Document
     article_json.to_html
   end
 
+  def amp_body
+    article_json.to_amp
+  end
+
+  def amp_libraries
+    [
+      '<script async="" src="https://cdn.ampproject.org/v0.js"></script>',
+      *article_json.amp_exporter.amp_libraries
+    ]
+  end
+
   private
 
   def article_json
     @article_json ||=
-      ArticleJSON::Article.from_google_doc_html(google_doc_html)
+      ::ArticleJSON::Article.from_google_doc_html(google_doc_html)
   end
 
   def google_doc_html
