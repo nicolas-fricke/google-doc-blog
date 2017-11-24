@@ -1,9 +1,15 @@
-<h1><%= doc.title %></h1>
-<div class="meta-info">
-  <cite><%= doc.last_author_name %></cite>
-  //
-  <time><%= doc.modified_time_display %></time>
-</div>
-<article>
-  <%= doc.html_body %>
-</article>
+<section id="one" class="wrapper style1">
+  <header class="major">
+    <h1><%= doc.title %></h1>
+    <p>
+      <cite><%= doc.last_author_name %></cite>
+      //
+      <time><%= doc.modified_time_display %></time>
+    </p>
+  </header>
+  <div class="container">
+    <article>
+      <%= doc.html_body %>
+    </article>
+  </div>
+</section>

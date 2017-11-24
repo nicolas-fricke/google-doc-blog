@@ -25,6 +25,10 @@ class Document
     @google_document.last_modifying_user.display_name
   end
 
+  def teaser
+    article_json.to_plain_text[0..500]
+  end
+
   def html_body
     article_json.to_html
   end

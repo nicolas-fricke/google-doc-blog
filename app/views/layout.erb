@@ -8,10 +8,45 @@
   <% if local_variables.include?(:header_tags) %>
     <%= header_tags %>
   <% end %>
+  <meta name="description" content="Simple web-app turning a Google Drive folder into your personal blog" />
+  <meta name="keywords" content="article_json google documents blog" />
+  <!--[if lte IE 8]>
+  <script src="js/html5shiv.js"></script><![endif]-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/skel.min.js"></script>
+  <script src="js/skel-layers.min.js"></script>
+  <script src="js/init.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="css/skel.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style-xlarge.css" />
+  </noscript>
+  <link rel="stylesheet" href="css/article.css" />
 </head>
-<body>
-  <div class="content">
-    <%= yield %>
+<body id="top">
+<!-- Header -->
+<header id="header" class="skel-layers-fixed">
+  <h1><a href="/"><%= Config[:blog_title] %></a></h1>
+  <nav id="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="https://github.com/nicolas-fricke/google-doc-blog" class="icon fa-github"><span class="label">Check out the source code</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<%= yield %>
+
+<!-- Footer -->
+<footer id="footer">
+  <div class="container">
+    <ul class="copyright">
+      <li>&copy;Nicolas Fricke. Very few rights reserved.</li>
+      <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+      <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+    </ul>
   </div>
+</footer>
+
 </body>
 </html>

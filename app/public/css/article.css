@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+article p {
+  font: 18px/27px Georgia, "Times New Roman", Times, serif;
+  margin: 0 0 27px;
+}
+
+article p:empty {
+  display: none;
+}
+
+article h1,
+article h2,
+article h3 {
+  font: bold 24px/34px Georgia, "Times New Roman", Times, serif;
+  margin: 0 0 27px;
+}
+
+article img {
+  border: 1px solid #f5f5f5;
+  width: 100%;
+}
+
+article figcaption {
+  border-bottom: 2px solid #f5f5f5;
+  font: 13px/18px Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  font-style: italic;
+  padding: 13px 0;
+  margin-bottom: 27px;
+}
+
+article ul,
+article ol {
+  margin-bottom: 27px;
+}
+
+article ul li,
+article ol li {
+  margin-bottom: 13px;
+}
+
+article ul li p,
+article ol li p {
+  display: inline;
+  margin: 0;
+}
+
+article ul li {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+article .text-box {
+  border-top: 2px solid #FF9900;
+  background-color: #f5f5f5;
+  padding: 15px 15px 0;
+  margin: 0 0 27px;
+  font-size: 15px;
+  line-height: 22px;
+  width: 100%;
+  float: left;
+}
+
+article .text-box p {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+article .text-box h1,
+article .text-box h2,
+article .text-box h3 {
+  font-size: 18px;
+  line-height: 27px;
+  margin: 0 0 22px;
+}
+
+article .quote {
+  border-top: 2px solid #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
+  margin: 0 0 27px;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+article .quote p {
+  font: italic 22px/30px Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+  position: relative;
+}
+
+article .quote small {
+  font: italic 13px/18px Georgia, "Times New Roman", Times, serif;
+  display: block;
+  margin-top: 10px;
+  color: #555;
+  position: relative;
+}
+
+article .quote::before {
+  content: "";
+  font: 60px / 60px 'devexicons';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  color: #f5f5f5;
+}
+
+@media (min-width: 480px) {
+
+  article figure.float-left,
+  article figure.float-right {
+    width: 230px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  article figure.float-left {
+    float: left;
+    margin-right: 30px;
+    margin-left: 0;
+  }
+
+  article figure.float-right {
+    float: right;
+    margin-left: 30px;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+
+  article .float-right,
+  article .float-left {
+    width: 300px;
+    margin-top: 3px;
+    margin-bottom: 4px;
+  }
+
+  article .float-right.quote,
+  article .float-left.quote {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  article .float-right figcaption,
+  article .float-left figcaption {
+    margin-bottom: 0;
+  }
+
+  article .float-left {
+    float: left;
+    margin-right: 30px;
+    margin-left: 0;
+  }
+
+  article .float-right {
+    float: right;
+    margin-left: 30px;
+    margin-right: 0;
+  }
+
+  article figure.float-left,
+  article figure.float-right {
+    width: 300px;
+  }
+}
+
+article .embed {
+  position: relative;
+}
+
+article .embed.youtube-video, article .embed.vimeo-video, article .embed.slideshare {
+  clear: both;
+  padding-top: 25px;
+  padding-bottom: 52.25%;
+  height: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+article .embed.youtube-video iframe, article .embed.vimeo-video iframe, article .embed.slideshare iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+article .embed .unavailable-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fafafa;
+  text-align: center;
+  padding: 25% 15% 0;
+  color: #999;
+}
+
+@media (max-width: 480px) {
+
+  article .embed .unavailable-embed {
+    padding-top: 20%;
+    font-size: 13px;
+  }
+}

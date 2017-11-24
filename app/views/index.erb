@@ -1,10 +1,34 @@
-<h1><%= title %></h1>
-<ul>
-  <% docs.each do |doc| %>
-    <li>
-      <a href="/<%= doc.id %>">
-        <%= doc.title %> (<%= doc.modified_time_display %>)
-      </a>
-    </li>
-  <% end %>
-</ul>
+<!-- Banner -->
+<section id="banner">
+  <div class="inner">
+    <h2><%= title %></h2>
+    <p>Simple web-app turning a Google Drive folder into your personal blog</p>
+  </div>
+</section>
+
+<% if docs.any? %>
+  <section id="one" class="wrapper style2">
+    <header class="major">
+      <h2>This is live from my Google Doc:</h2>
+    </header>
+    <div class="container">
+      <% docs.each_slice(3).with_index do |three_docs, slice_index| %>
+        <div class="row">
+          <% three_docs.each_with_index do |doc, sub_index| %>
+            <a href="/<%= doc.id %>" style="text-decoration: none;">
+              <div class="4u">
+                <section class="special box">
+                  <i class="icon major"><%= slice_index * 3 + sub_index + 1 %></i>
+                  <h3><%= doc.title %></h3>
+                  <time style="font-style: italic"><%= doc.modified_time_display %></time>
+                  <p style="height: 10em; overflow: hidden;"><%= doc.teaser %>&hellip;</p>
+                  <a href="/<%= doc.id %>" class="button big special">Read more</a>
+                </section>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
