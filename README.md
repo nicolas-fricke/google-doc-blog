@@ -2,6 +2,8 @@
 
 Simple web-app using [`article_json`](https://github.com/Devex/article_json) to turn a Google Drive folder into your personal blog Edit
 
+Have a look at this blog hosted on Heroku: https://google-doc-blog.herokuapp.com/
+
 ## Prerequisites
 
 * You need a running `ruby` installation >= version 2.3
