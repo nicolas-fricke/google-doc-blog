@@ -3,6 +3,9 @@
 require_relative '../app/config'
 require_relative '../app/google_drive_connector'
 
+# Don't buffer the output to avoid broken IO in docker container...
+$stdout.sync = true
+
 puts 'This script will guide you through the required setup steps setup the '\
      'blog. Please follow these steps:'
 
